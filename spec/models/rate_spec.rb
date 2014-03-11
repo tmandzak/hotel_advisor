@@ -5,7 +5,6 @@ describe Rate do
   before do
   	@user = User.new(id: 1, name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") 
   	@hotel = Hotel.new(id: 1, title: "Grand Hotel", stars: 5, breakfast: true, description: "Nice room", price: 500.00)
-	#@hotel.user = @user
 	@rate = Rate.new(rate: 5, comment: "text")
 	@rate.user = @user
 	@rate.hotel = @hotel
