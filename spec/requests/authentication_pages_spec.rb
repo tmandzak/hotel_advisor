@@ -8,6 +8,9 @@ describe "Authentication" do
     before { visit signin_path }
 
     it { should have_title('Sign in') }
+    it { should have_selector('input#session_email') }
+    it { should have_selector('input#session_password') }
+    it { should have_selector('input.btn.btn-large.btn-primary') }
     it { should have_link('Sign up now!', href: signup_path) }
 
     describe "with invalid information" do
@@ -51,6 +54,11 @@ describe "Authentication" do
     before { visit signup_path }
 
     it { should have_title('Sign up') }
+    it { should have_selector('input#user_name') }
+    it { should have_selector('input#user_email') }
+    it { should have_selector('input#user_password') }
+    it { should have_selector('input#user_password_confirmation') }
+    it { should have_selector('input.btn.btn-large.btn-primary') }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -73,9 +81,9 @@ describe "Authentication" do
       describe "after saving the user" do
         before { click_button "Create my account" }
         let(:user) { User.find_by(email: 'user@example.com') }
-        
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+                
         it { should have_title("Hotel Advisory") }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link('Profile',     href: edit_user_path(user)) }
         it { should have_link('Sign out',    href: signout_path) }
         it { should_not have_link('Sign in / Sign up', href: signin_path) }              
