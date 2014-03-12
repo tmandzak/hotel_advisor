@@ -4,6 +4,5 @@
     <%= link_to hotel.title, hotel %>
     <%= "*"*hotel.stars %>
   </span>
-  <span class="content"><%= "Score from #{ pluralize(hotel.rates_count, "review") }: #{ '%.1f' % hotel.rate_avg } / 5" %></span>
-  
+  <span class="content"><%= "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5" %></span>
 </li>

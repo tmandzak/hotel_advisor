@@ -3,7 +3,7 @@
 
 <%= will_paginate %>
 
-<ul class="hotels">
+<ol class="hotels">
 
   <span class="hotel">
     <%= link_to "Add new hotel", new_hotel_path %>
@@ -12,6 +12,6 @@
   <% @hotels.each do |hotel| %>
     <%= render hotel %>
   <% end %>
-</ul>
+</ol>
 
 <%= will_paginate %>

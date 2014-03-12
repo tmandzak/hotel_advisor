@@ -6,9 +6,9 @@ class HotelsController < ApplicationController
   end
 
   def show
-  end
-
-  def update
+    @hotel = Hotel.find(params[:id])
+    @rates = @hotel.rates.paginate(page: params[:page])
+    @rate = @hotel.rates.build
   end
 
   def new
@@ -31,7 +31,6 @@ class HotelsController < ApplicationController
   end
 
 
-
 private
 
     def hotel_params
@@ -41,6 +40,8 @@ private
     def address_params
       params.require(:address).permit(:country, :city, :state, :street)
     end
+
+    
 
 
 end

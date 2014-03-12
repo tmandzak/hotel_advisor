@@ -1,0 +1,10 @@
+<%= form_for(@rate) do |f| %>
+  <div class="field">
+  	<%= render 'shared/error_messages', object: f.object %>
+  	  <%= f.label :rate %>
+	  <%= f.select :rate, 1..5 %>
+      <%= f.text_area :comment, placeholder: "Leave your comment..." %>
+      <%= f.hidden_field :hotel_id, value: @hotel.id %>
+  </div>
+  <%= f.submit "Rate", class: "btn btn-large btn-primary" %>
+<% end %>

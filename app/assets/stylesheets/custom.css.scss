@@ -142,7 +142,7 @@ aside {
   }
 }
 
-.gravatar {
+.photo {
   float: left;
   margin-right: 10px;
 }
@@ -175,7 +175,7 @@ input {
 
 /* Hotels index */
 
-.hotels {
+.hotels, .users {
   list-style: none;
   margin: 0;
   li {
@@ -188,9 +188,9 @@ input {
   }
 }
 
-/* microposts */
+/* rates */
 
-.microposts {
+.rates {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -204,10 +204,6 @@ input {
 }
 .timestamp {
   color: $grayLight;
-}
-.gravatar {
-  float: left;
-  margin-right: 10px;
 }
 aside {
   textarea {
