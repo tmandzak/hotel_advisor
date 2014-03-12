@@ -1,0 +1,9 @@
+<li id="<%= hotel.id %>">
+  <%#= link_to gravatar_for(feed_item.user), feed_item.user %>
+  <span class="hotel">
+    <%= link_to hotel.title, hotel %>
+    <%= "*"*hotel.stars %>
+  </span>
+  <span class="content"><%= "Score from #{ pluralize(hotel.rates_count, "review") }: #{ '%.1f' % hotel.rate_avg } / 5" %></span>
+  
+</li>

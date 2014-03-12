@@ -1,0 +1,17 @@
+<% provide(:title, 'Rating') %>
+<h1>Rating</h1>
+
+<%= will_paginate %>
+
+<ul class="hotels">
+
+  <span class="hotel">
+    <%= link_to "Add new hotel", new_hotel_path %>
+  </span>
+
+  <% @hotels.each do |hotel| %>
+    <%= render hotel %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

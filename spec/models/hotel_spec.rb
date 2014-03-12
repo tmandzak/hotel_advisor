@@ -5,8 +5,8 @@ describe Hotel do
   before do
   	@user = User.new(id: 1, name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar") 
   	@hotel = Hotel.new(title: "Grand Hotel", stars: 5, breakfast: true, description: "Nice room", price: 500.00)
-	@hotel.user = @user
-	@address = @hotel.build_address(country: "Ukraine", city: "L'viv", street: "Svobody, 10")
+	  @hotel.user = @user
+	  @address = @hotel.build_address(country: "Ukraine", city: "L'viv", street: "Svobody, 10")
   end
 
   subject { @hotel }
@@ -48,6 +48,16 @@ describe Hotel do
 
   describe "when star rating is not present" do
     before { @hotel.stars = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when star rating is not a number" do
+    before { @hotel.stars = 'foo' }
+    it { should_not be_valid }
+  end
+
+  describe "when price is not a number" do
+    before { @hotel.price = 'foo' }
     it { should_not be_valid }
   end
 

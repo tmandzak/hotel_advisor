@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
   def home
-  end
-
-  def rating
+  	@hotels = Hotel.take(5)
   end
 end

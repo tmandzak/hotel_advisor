@@ -36,11 +36,20 @@ namespace :db do
                            street: Faker::Address.street_address)
       hotel.save
 
-      3.times do
-        rate = hotel.rates.build(rate: rg.rand(1..5), comment: Faker::Lorem.sentence)
+      rates_number = rg.rand(1..10)
+
+      rates_number.times do
+        hotel_rate = rg.rand(1..5)
+        rate = hotel.rates.build(rate: hotel_rate, comment: Faker::Lorem.sentence)
         rate.user = users[rg.rand(5)]
         rate.save
+
+        hotel.rates_total += hotel_rate;
       end
+
+      hotel.rate_avg = hotel.rates_total.to_f / rates_number;
+      hotel.save
+
 
     end  
      
