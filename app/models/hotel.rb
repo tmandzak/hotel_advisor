@@ -1,9 +1,10 @@
 class Hotel < ActiveRecord::Base
-	mount_uploader :photo, AttachmentUploader
 	belongs_to :user
 	has_many :rates, inverse_of: :hotel
 	has_one :address
 	default_scope -> { order 'rate_avg DESC, rates_count DESC'}
+
+    mount_uploader :photo, AttachmentUploader
 
 	before_save do 
 		self.title = title.strip

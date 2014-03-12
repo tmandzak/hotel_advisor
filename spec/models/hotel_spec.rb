@@ -37,9 +37,22 @@ describe Hotel do
     it { should_not be_valid }
   end
 
-  describe "when hotel title is already taken" do
+  describe "when hotel title differs only by spaces from already taken" do
     before do
       hotel_with_same_title = @hotel.dup
+
+      hotel_with_same_title.title = "     " + hotel_with_same_title.title + "     "
+      hotel_with_same_title.save
+    end
+
+    it { should_not be_valid }
+  end
+
+  describe "when hotel title differs by letter case from already taken" do
+    before do
+      hotel_with_same_title = @hotel.dup
+
+      hotel_with_same_title.title = hotel_with_same_title.title.upcase
       hotel_with_same_title.save
     end
 

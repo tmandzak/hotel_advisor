@@ -3,8 +3,8 @@ namespace :db do
   task populate: :environment do
     User.create!(name: "Taras Mandzak",
                  email: "tmandzak@gmail.com",
-                 password: "hahaha",
-                 password_confirmation: "hahaha")
+                 password: "password",
+                 password_confirmation: "password")
     
 
     5.times do |n|
@@ -24,10 +24,10 @@ namespace :db do
     
     50.times do
       hotel = Hotel.new(title: Faker::Company.name + " Hotel",
-                            stars: rg.rand(5),
-                            breakfast: rg.rand(2) == 1,
-                            description: Faker::Lorem.paragraph,
-                            price: rg.rand(200..2000))
+                        stars: rg.rand(5),
+                        breakfast: rg.rand(2) == 1,
+                        description: Faker::Lorem.paragraph,
+                        price: rg.rand(200..2000))
 
       hotel.user = users[rg.rand(5)]
       hotel.build_address(country: Faker::Address.country,
@@ -49,7 +49,6 @@ namespace :db do
 
       hotel.rate_avg = hotel.rates_total.to_f / rates_number;
       hotel.save
-
 
     end  
      

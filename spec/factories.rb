@@ -9,7 +9,8 @@ FactoryGirl.define do
   end
 
   factory :hotel do
-
+    sequence(:title) { |n| "Hotel-#{n}" }
+    stars 5 
   end
   
   factory :rate do
