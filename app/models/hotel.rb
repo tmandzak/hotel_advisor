@@ -11,5 +11,4 @@ class Hotel < ActiveRecord::Base
 
 	validates :title, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
 	validates :stars, presence: true, numericality: { only_integer: true }
-	validates :price, numericality: true
 end

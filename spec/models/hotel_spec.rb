@@ -56,11 +56,6 @@ describe Hotel do
     it { should_not be_valid }
   end
 
-  describe "when price is not a number" do
-    before { @hotel.price = 'foo' }
-    it { should_not be_valid }
-  end
-
   describe "when rates fields are not assigned" do
     its(:rates_count) { should eq 0 }
     its(:rates_total) { should eq 0 }

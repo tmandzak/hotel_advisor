@@ -8,7 +8,7 @@ describe "Pages" do
 
     before { visit root_path }
 
-    it { should have_title("Hotel Advisory") } 
+    it { should have_title("Hotel Advisor") } 
     it { should have_content('Top 5') }
   end
 
@@ -16,7 +16,7 @@ describe "Pages" do
 
     before { visit rating_path }
 
-    it { should have_title("Hotel Advisory | Rating") } 
+    it { should have_title("Hotel Advisor | Rating") } 
     it { should have_content('Rating') }
   end
 end

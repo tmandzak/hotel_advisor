@@ -33,7 +33,7 @@ describe "Authentication" do
         click_button "Sign in"
       end
       
-      it { should have_title("Hotel Advisory") }
+      it { should have_title("Hotel Advisor") }
       it { should have_link('Profile',     href: edit_user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in / Sign up', href: signin_path) }
@@ -41,7 +41,7 @@ describe "Authentication" do
       describe "followed by signout" do
         before { click_link "Sign out" }
 
-        it { should have_title("Hotel Advisory") }
+        it { should have_title("Hotel Advisor") }
         it { should_not have_link('Profile',     href: edit_user_path(user)) }
         it { should_not have_link('Sign out',    href: signout_path) }
         it { should have_link('Sign in / Sign up', href: signin_path) }
@@ -82,7 +82,7 @@ describe "Authentication" do
         before { click_button "Create my account" }
         let(:user) { User.find_by(email: 'user@example.com') }
                 
-        it { should have_title("Hotel Advisory") }
+        it { should have_title("Hotel Advisor") }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link('Profile',     href: edit_user_path(user)) }
         it { should have_link('Sign out',    href: signout_path) }
