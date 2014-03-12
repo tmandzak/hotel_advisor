@@ -5,7 +5,10 @@
     <aside class="span4">
       <section>
 
-        <%#= link_to gravatar_for(current_user, size: 52), current_user %>
+        
+        <span >
+        	<img src='<%= "#{@hotel.photo_url}" %>' height='100' width='100'> 
+        </span> 
         <span class="content">
         	<b>Average</b><%= " of #{ pluralize(@hotel.rates.count, "rate") }: #{ '%.1f' % @hotel.rate_avg } / 5" %>
         </span>
@@ -13,7 +16,10 @@
         <span class="content"><b>Room description:</b><%= " #{@hotel.description}" %></span>
         <span class="content"><b>Room price:</b><%= " #{@hotel.price}" %></span>
         <span class="content">
-        	<b>Address:</b><%= " #{@hotel.address.country} #{@hotel.address.state}, #{@hotel.address.city}, #{@hotel.address.street}" %>
+    	   <% unless @hotel.address.nil?  %>
+           <b>Address:</b>
+    	   <%=  " #{@hotel.address.country} #{@hotel.address.state}, #{@hotel.address.city}, #{@hotel.address.street}" %>
+    	   <% end %>
         </span>
 
       </section>

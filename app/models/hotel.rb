@@ -1,4 +1,5 @@
 class Hotel < ActiveRecord::Base
+	mount_uploader :photo, AttachmentUploader
 	belongs_to :user
 	has_many :rates, inverse_of: :hotel
 	has_one :address
