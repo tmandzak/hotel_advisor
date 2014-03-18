@@ -10,7 +10,20 @@ FactoryGirl.define do
 
   factory :hotel do
     sequence(:title) { |n| "Hotel-#{n}" }
-    stars 5 
+    stars 5
+    rate_avg 4.5
+    breakfast true
+    description 'Some description'
+    price 1000.0
+    photo 'photo.jpg'
+    address
+  end
+
+  factory :address do
+    country 'Ukraine'
+    state 'LV'
+    city 'Lviv'
+    street 'Svobody, 1'
   end
   
   factory :rate do
@@ -18,7 +31,9 @@ FactoryGirl.define do
     comment "Some comment"
     user
     hotel
-  end 
+  end
+
+
 
 end
 

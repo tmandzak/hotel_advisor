@@ -23,7 +23,7 @@ class HotelsController < ApplicationController
      
     if @hotel.save && @address.save
       flash[:success] = "New hotel was added successfully"  
-      redirect_to hotels_url
+      redirect_to hotel_url(@hotel.id)
     else
       render 'new'
     end

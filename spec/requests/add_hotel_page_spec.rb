@@ -68,7 +68,6 @@ describe 'Add new hotel page: ' do
         let(:city) { 'Lviv' }
         let(:street) { 'Svobody'}
 
-
         before do
           fill_in 'Title', with: title
           select stars.to_s, from: 'Stars'
@@ -119,3 +118,4 @@ describe 'Add new hotel page: ' do
   end
 
 end
+

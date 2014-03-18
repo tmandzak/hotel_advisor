@@ -3,8 +3,7 @@
      <img src='<%= "#{hotel.photo_url}" %>' height='100' width='100'> 
   </span>
   <span class="hotel">
-    <%= link_to hotel.title, hotel %>
-    <%= "*"*hotel.stars %>
+    <%= link_to hotel.title+"*"*hotel.stars, hotel %>
   </span>
   <span class="content"><%= "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5" %></span>
 </li>
