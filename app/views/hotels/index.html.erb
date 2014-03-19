@@ -1,11 +1,11 @@
 <% provide(:title, 'Rating') %>
 <h1>Rating</h1>
 
-<%= will_paginate %>
+<%= will_paginate(@hotels, :renderer => WillPaginate::ActionView::LinkRenderer) %>
 
-<ol class="hotels">
+<ol>
 
-  <span class="hotel">
+  <span>
     <%= link_to "Add new hotel", new_hotel_path %>  
   </span>
 
@@ -14,4 +14,4 @@
   <% end %>
 </ol>
 
-<%= will_paginate %>
+<%= will_paginate(@hotels, :renderer => WillPaginate::ActionView::LinkRenderer) %>

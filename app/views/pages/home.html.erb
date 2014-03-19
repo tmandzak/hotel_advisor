@@ -1,8 +1,12 @@
-<h1>Top 5</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Top 5</h1>
 
-<ol class="hotels">
-  <% @hotels.each do |hotel| %>
-    <%= render hotel %>
-  <% end %>
-</ol>
+    <ol>
+      <% @hotels.each do |hotel| %>
+         <%= render hotel %>
+      <% end %>
+    </ol>
+  </div>
+</div>
 
