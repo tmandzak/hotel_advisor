@@ -1,9 +1,14 @@
-<li id="<%= hotel.id %>">
-  <span class="photo">
-     <img src='<%= "#{hotel.photo_url}" %>' height='100' width='100'> 
-  </span>
-  <span class="hotel">
-    <%= link_to hotel.title+"*"*hotel.stars, hotel %>
-  </span>
-  <span class="content"><%= "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5" %></span>
-</li>
+<a id="<%= hotel.id %>" href="<%= url_for hotel  %>" class="list-group-item">
+    <div class="media">
+      <div class="pull-left">
+        <img src='<%= "#{hotel.photo_url}" %>' class="media-object" height="100" width="100" >
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= hotel.title+"*"*hotel.stars %> <small><i><%= "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5" %></i></small></h4>
+        <p><%= hotel.description %></p>
+      </div>
+    </div>
+</a>
+
+
+

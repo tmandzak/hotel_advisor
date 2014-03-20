@@ -1,0 +1,32 @@
+<div class="media">
+  <div class="pull-left">
+    <img src='<%= "#{@hotel.photo_url}" %>' class="media-object" height="100" width="100" >
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading"><small><i><%= "Average of #{ pluralize(@hotel.rates_count, "rate") }: #{ '%.1f' % @hotel.rate_avg } / 5" %></i></small></h4>
+
+    <dl class="dl-horizontal">
+
+      <dt>Breakfast included</dt>
+        <dd><%= " #{(@hotel.breakfast == true) ? 'yes':'no'}" %></dd>
+
+      <dt>Room description</dt>
+        <dd><%= " #{@hotel.description}" %></dd>
+
+      <dt>Room price</dt>
+        <dd><%= " #{@hotel.price}" %></dd>
+
+      <% unless @hotel.address.nil?  %>
+      <dt>Address</dt>
+      <dd><%=  " #{@hotel.address.country}, #{@hotel.address.state}, #{@hotel.address.city}, #{@hotel.address.street}" %></dd>
+      <% end %>
+
+    </dl>
+
+  </div>
+</div>
+
+
+
+
+

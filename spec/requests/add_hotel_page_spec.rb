@@ -43,7 +43,7 @@ describe 'Add new hotel page: ' do
             click_button 'Save'
           end
 
-          it { should have_selector('div.alert.alert-error') }
+          it { should have_selector('div.alert.alert-danger') }
         end
 
         it "should not create a hotel" do

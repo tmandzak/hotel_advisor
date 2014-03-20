@@ -1,17 +1,21 @@
 <% provide(:title, 'Rating') %>
-<h1>Rating</h1>
+<div class="container">
+    <h1>Rating</h1>
+    <div class="col-md-10">
+        <%= link_to "Add new hotel", new_hotel_path, class: 'btn btn-default' %>
+    </div>
 
-<%= will_paginate(@hotels, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+    <div class="col-md-10">
+      <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
 
-<ol>
+      <div class="list-group">
+        <% @hotels.each do |hotel| %>
+        <%= render hotel %>
+        <% end %>
+      </div>
 
-  <span>
-    <%= link_to "Add new hotel", new_hotel_path %>  
-  </span>
+      <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
+    </div>
 
-  <% @hotels.each do |hotel| %>
-    <%= render hotel %>
-  <% end %>
-</ol>
+</div>
 
-<%= will_paginate(@hotels, :renderer => WillPaginate::ActionView::LinkRenderer) %>

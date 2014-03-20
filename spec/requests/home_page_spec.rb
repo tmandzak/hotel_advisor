@@ -10,12 +10,12 @@ describe 'Home page' do
 
   it "should show top 5 hotels" do
     Hotel.take(5).each do |hotel|
-      expect(page).to have_selector("li##{hotel.id}")
+      expect(page).to have_selector("a##{hotel.id}")
 
-      within("##{hotel.id}") do
+      within("a##{hotel.id}") do
         expect(page).to have_css("img[src='#{hotel.photo}']")
-        expect(page).to have_selector('span', text: hotel.title+'*'*hotel.stars)
-        expect(page).to have_selector('span', text: "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5")
+        expect(page).to have_selector('h4', text: hotel.title+'*'*hotel.stars)
+        expect(page).to have_selector('p', text: "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5")
       end
     end
   end

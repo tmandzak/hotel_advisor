@@ -14,11 +14,11 @@ describe 'Rating page' do
     before(:all) { 20.times { FactoryGirl.create(:hotel) } }
     after(:all)  { Hotel.delete_all }
 
-    it { should_not have_selector('div.pagination') }
+    it { should_not have_selector('ul.pagination') }
 
     it 'should list each hotel' do
       Hotel.paginate(page: 1).each do |hotel|
-        expect(page).to have_selector('li', text: hotel.title)
+        expect(page).to have_selector('a', text: hotel.title)
       end
     end
   end
@@ -27,6 +27,6 @@ describe 'Rating page' do
     before(:all) { 40.times { FactoryGirl.create(:hotel) } }
     after(:all)  { Hotel.delete_all }
 
-    it { should have_selector('div.pagination') }
+    it { should have_selector('ul.pagination') }
   end
 end

@@ -1,67 +1,19 @@
 <% provide(:title, 'Hotel details') %>
+<div class="container">
 <h1><%= @hotel.title + "*"*@hotel.stars %></h1>
 
   <div class="row">
-    <aside class="span4">
-      <section>
+    <div class="col-md-6">
 
-        <span >
-        	<img src='<%= "#{@hotel.photo_url}" %>' height='100' width='100'> 
-        </span> 
-        <span class="content">
-        	<b>Average</b><%= " of #{ pluralize(@hotel.rates.count, "rate") }: #{ '%.1f' % @hotel.rate_avg } / 5" %>
-        </span>
-        <span class="content"><b>Breakfast included:</b><%= " #{(@hotel.breakfast == true) ? 'yes':'no'}" %></span>
-        <span class="content"><b>Room description:</b><%= " #{@hotel.description}" %></span>
-        <span class="content"><b>Room price:</b><%= " #{@hotel.price}" %></span>
-        <span class="content">
-    	   <% unless @hotel.address.nil?  %>
-           <b>Address:</b>
-    	   <%=  " #{@hotel.address.country} #{@hotel.address.state}, #{@hotel.address.city}, #{@hotel.address.street}" %>
-    	   <% end %>
-        </span>
+      <%= render 'hotel_info'  %>
 
-      </section>
+      <%= render 'rate'  %>
 
-      <section>
-        <% if signed_in? %>
-        <%= form_for(@rate) do |f| %>
-          <div class="field">
-          	<%= render 'shared/error_messages', object: f.object %>
-          	  <%= f.label :rate %>
-        	  <%= f.select :rate, 1..5 %>
-              <%= f.text_area :comment, placeholder: "Leave your comment..." %>
-              <%= f.hidden_field :hotel_id, value: @hotel.id %>
-          </div>
-          <%= f.submit "Rate", class: "btn btn-large btn-primary" %>
-          <% end %>
-        <% else %>
-           <%= link_to "Please sign in to rate", signin_path %>  
-        <% end %>
-
-      </section>
-
-    </aside>
-    <div class="span8">
-      <% if @rates.any? %>
-      <h3>Rates</h3>
-        <ol class="rates">
-          <% @rates.each do |rate| %>
-          <li id="<%= rate.id %>">
-            <span class="user">
-              <%= rate.user.name %>
-            </span>
-            <span class="content"><%= "Rate: #{rate.rate} / 5" %></span>
-            <span class="content"><%= rate.comment %></span>
-            <span class="timestamp">
-              Rated <%= time_ago_in_words(rate.created_at) %> ago.
-            </span>
-          </li>
-          <% end %>
-        </ol>
-        <%= will_paginate @rates %>
-      <% else %>
-      <h3>No rates</h3> 
-      <% end %>
     </div>
+
+    <div class="col-md-6">
+      <%= render 'hotel_rates'  %>
+    </div>
+
   </div>
+</div>
