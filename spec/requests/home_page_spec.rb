@@ -5,8 +5,8 @@ describe 'Home page' do
   subject { page }
   before { visit root_path }
 
-  it { should have_title('Hotel Advisor') }
-  it { should have_content('Top 5') }
+  it { should have_title("Hotel Advisor") }
+  it { should have_content("Top 5") }
 
   it "should show top 5 hotels" do
     Hotel.take(5).each do |hotel|

@@ -1,21 +1,22 @@
 <% provide(:title, 'Rating') %>
 <div class="container">
     <h1>Rating</h1>
-    <div class="col-md-10">
-        <%= link_to "Add new hotel", new_hotel_path, class: 'btn btn-default' %>
-    </div>
-
-    <div class="col-md-10">
-      <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
-
-      <div class="list-group">
-        <% @hotels.each do |hotel| %>
-        <%= render hotel %>
-        <% end %>
+    <div class="row">
+      <div class="col-md-10">
+        <%= link_to 'Add new hotel', new_hotel_path, class: 'btn btn-default' %>
       </div>
 
-      <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
-    </div>
+      <div class="col-md-10">
+        <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
 
+        <div class="list-group">
+          <% @hotels.each do |hotel| %>
+            <%= render hotel %>
+          <% end %>
+        </div>
+
+        <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
+      </div>
+    </div>
 </div>
 

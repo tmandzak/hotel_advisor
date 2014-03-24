@@ -1,16 +1,16 @@
 <% if @rates.any? %>
     <h4>Rates</h4>
 
-      <% @rates.each do |rate| %>
-          <div id="<%= rate.id %>" class="media">
+    <% @rates.each do |rate| %>
+        <div id='<%= rate.id %>' class='media'>
 
-            <h5 class="media-heading"><%= rate.user.name %> <small><i>Rated <%= time_ago_in_words(rate.created_at) %> ago.</i></small></h5>
+          <h5 class='media-heading'><%= rate.user.name %> <small><i>Rated <%= time_ago_in_words(rate.created_at) %> ago.</i></small></h5>
 
-            <strong><%= "Rate: #{rate.rate} / 5" %></p></strong>
-            <i><%= rate.comment %></i>
-            <hr />
-          </div>
-      <% end %>
+          <strong><%= "Rate: #{rate.rate} / 5" %></strong>
+          <p><i><%= rate.comment %></i></p>
+          <hr />
+        </div>
+    <% end %>
 
     <%= will_paginate @rates, renderer: BootstrapPagination::Rails %>
 <% else %>

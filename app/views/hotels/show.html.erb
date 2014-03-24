@@ -1,18 +1,16 @@
 <% provide(:title, 'Hotel details') %>
 <div class="container">
-<h1><%= @hotel.title + "*"*@hotel.stars %></h1>
+<h1><%= @hotel.title + '*'*@hotel.stars %></h1>
 
   <div class="row">
     <div class="col-md-6">
-
-      <%= render 'hotel_info'  %>
-
-      <%= render 'rate'  %>
-
+      <%= render 'hotels/hotel_info'  %>
+      <hr/>
+      <%= render 'hotels/rate_form' %>
     </div>
 
     <div class="col-md-6">
-      <%= render 'hotel_rates'  %>
+      <%= render 'hotels/hotel_rates'  %>
     </div>
 
   </div>

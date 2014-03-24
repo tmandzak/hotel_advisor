@@ -22,7 +22,7 @@ describe 'Hotel details page' do
     it { should have_content(hotel.stars) }
     it { should have_content(hotel.description) }
     it { should have_content(hotel.price) }
-    it { should have_content((hotel.breakfast == true) ? 'yes':'no') }
+    it { should have_content(hotel.breakfast ? 'yes':'no') }
     it { should have_css("img[src='#{hotel.photo}']") }
     it { should have_content(hotel.address.country) }
     it { should have_content(hotel.address.state) }
@@ -39,13 +39,13 @@ describe 'Hotel details page' do
 
     it "should show hotel rates" do
       hotel.rates.each do |rate|
-        expect(page).to have_selector("li##{rate.id}")
+        expect(page).to have_selector("div##{rate.id}")
 
-        within("##{rate.id}") do
-          expect(page).to have_selector('span', text: user.name)
-          expect(page).to have_selector('span', text: "Rate: #{rate.rate} / 5")
-          expect(page).to have_selector('span', text: rate.comment)
-          expect(page).to have_selector('span', text: "Rated #{ time_ago_in_words(rate.created_at) } ago")
+        within("div##{rate.id}") do
+          expect(page).to have_content(user.name)
+          expect(page).to have_content("Rate: #{rate.rate} / 5")
+          expect(page).to have_content(rate.comment)
+          expect(page).to have_content("Rated #{ time_ago_in_words(rate.created_at) } ago")
         end
       end
     end
@@ -100,7 +100,7 @@ describe 'Hotel details page' do
         let(:rate) { Rate.order(:id).first }
 
         it { should have_selector('div.alert.alert-success') }
-        it { should have_selector("li##{rate.id}") }
+        it { should have_selector("div##{rate.id}") }
 
         specify { expect(rate.rate).to eq new_rate }
         specify { expect(rate.comment).to eq new_comment }

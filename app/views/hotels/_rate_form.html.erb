@@ -1,0 +1,20 @@
+<div class="col-md-offset-4">
+  <% if signed_in? %>
+      <%= form_for(@rate, :html => { :class => 'form-horizontal' }) do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+          <div class='form-group'>
+            <%= f.label :rate, class: 'control-label' %>
+            <%= f.select :rate, 1..5, class: 'form-control' %>
+          </div>
+          <div class='form-group'>
+            <%= f.text_area :comment, placeholder: 'Leave your comment...', class: 'form-control' %>
+          </div>
+          <div class='form-group'>
+            <%= f.hidden_field :hotel_id, value: @hotel.id %>
+            <%= f.submit 'Rate', class: 'btn btn-large btn-primary' %>
+          </div>
+      <% end %>
+  <% else %>
+      <%= link_to 'Please sign in to rate', signin_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>

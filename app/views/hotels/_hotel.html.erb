@@ -4,7 +4,7 @@
         <img src='<%= "#{hotel.photo_url}" %>' class="media-object" height="100" width="100" >
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><%= hotel.title+"*"*hotel.stars %> <small><i><%= "Average of #{ pluralize(hotel.rates_count, "rate") }: #{ '%.1f' % hotel.rate_avg } / 5" %></i></small></h4>
+        <h4 class="media-heading"><%= hotel.title+'*'*hotel.stars %> <small><i><%= "Average of #{ pluralize(hotel.rates_count, 'rate') }: #{ '%.1f' % hotel.rate_avg } / 5" %></i></small></h4>
         <p><%= hotel.description %></p>
       </div>
     </div>
