@@ -7,6 +7,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'will_paginate-bootstrap', '1.0.0'
 gem 'carrierwave', '0.10.0'
+gem 'country_select', '1.1.3'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

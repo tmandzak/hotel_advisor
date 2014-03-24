@@ -46,11 +46,11 @@ describe 'Add new hotel page: ' do
           it { should have_selector('div.alert.alert-danger') }
         end
 
-        it "should not create a hotel" do
+        it 'should not create a hotel' do
           expect { click_button "Save" }.not_to change(Hotel, :count)
         end
 
-        it "should not create a hotel address" do
+        it 'should not create a hotel address' do
           expect { click_button "Save" }.not_to change(Address, :count)
         end
 
@@ -75,19 +75,17 @@ describe 'Add new hotel page: ' do
           attach_file 'Photo', "#{Rails.root}/app/assets/images/fallback/#{ photo }"
           fill_in 'Description', with: description
           fill_in 'Price', with: price
-          fill_in 'Country', with: country
+          select country, from: 'Country'
           fill_in 'State', with: state
           fill_in 'City', with: city
           fill_in 'Street', with: street
         end
 
-        it "should create a hotel" do
-          expect { click_button "Save" }.to change(Hotel, :count).by(1)
+        it 'should create a hotel' do
+          expect { click_button 'Save' }.to change(Hotel, :count).by(1)
         end
 
-        it "should create a hotel address" do
-          expect { click_button "Save" }.to change(Address, :count).by(1)
-        end
+        it('should create a hotel address') { expect { click_button 'Save' }.to change(Address, :count).by(1) }
 
         describe 'hotel with address is saved correctly' do
           before do
