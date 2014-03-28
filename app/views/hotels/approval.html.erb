@@ -1,0 +1,27 @@
+<% provide(:title, 'Approval') %>
+<div class="container">
+    <h1>Approval</h1>
+    <div class="row">
+            
+            <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
+            
+            <div class="list-group">
+                <% @hotels.each do |hotel| %>
+                    <div class="col-md-11">
+                        <%= render hotel %>
+                    </div>
+                    <div class="col-md-1">
+                    <% if current_user && current_user.admin? %>
+                        <%= link_to 'approve', '/approve/'+hotel.id.to_s, class: 'btn btn-success btn-xs btn-block'  %> 
+                        <%= link_to 'edit', edit_hotel_path(hotel), class: 'btn btn-info btn-xs btn-block' %> 
+                        <%= link_to 'delete', hotel, { method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs btn-block' } %>
+                    <% end %>
+                    </div>
+                <% end %>
+            </div>
+
+            <%= will_paginate @hotels, renderer: BootstrapPagination::Rails %>
+        
+    </div>
+</div>
+

@@ -1,15 +1,43 @@
 class HotelsController < ApplicationController
-  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :admin_user,     only: [:edit, :update, :destroy]
+  before_action :signed_in_user, only: [:new, :create, :edit, :update, :destroy, :approval, :approve, :reject]
+  before_action :admin_user,     only: [:edit, :update, :destroy, :approval, :approve, :reject]
   
   def index
-    @hotels = Hotel.paginate(page: params[:page])
+    @hotels = Hotel.where( approved: true ).paginate(page: params[:page])
+  end
+  
+  def approval
+    @hotels = Hotel.where( approved: false ).paginate(page: params[:page])
+  end
+  
+  def approve
+    @hotel = Hotel.find(params[:id])
+        
+    if @hotel.update_attributes(approved: true)
+      flash[:success] = "Hotel is approved"
+    end
+      
+    redirect_to approval_url
+  end
+  
+  def reject
+    @hotel = Hotel.find(params[:id])
+        
+    if @hotel.update_attributes(approved: false)
+      flash[:warning] = "Hotel is rejected"
+    end
+      
+    redirect_to rating_url
   end
 
   def show
     @hotel = Hotel.find(params[:id])
-    @rates = @hotel.rates.paginate(page: params[:page])
-    @rate = @hotel.rates.build
+    if current_user && current_user.admin? || @hotel.approved? 
+      @rates = @hotel.rates.paginate(page: params[:page])
+      @rate = @hotel.rates.build
+    else 
+      redirect_to rating_url
+    end  
   end
 
   def new
@@ -39,7 +67,7 @@ class HotelsController < ApplicationController
     @hotel = Hotel.find(params[:id])
     @address = @hotel.address
     
-    if @hotel.update_attributes(hotel_params) && @address.update_attributes(address_params)
+    if @hotel.update_attributes(hotel_admin_params) && @address.update_attributes(address_params)
       flash[:success] = "Hotel is updated"
       redirect_to rating_url
     else
@@ -49,7 +77,7 @@ class HotelsController < ApplicationController
 
   def destroy
     Hotel.find(params[:id]).destroy
-    flash[:success] = "Hotel is deleted"
+    flash[:danger] = "Hotel is deleted"
     redirect_to rating_url
   end
 
@@ -57,6 +85,10 @@ class HotelsController < ApplicationController
 
   def hotel_params
     params.require(:hotel).permit(:title, :stars, :breakfast, :description, :price, :photo)
+  end
+  
+  def hotel_admin_params
+    params.require(:hotel).permit(:title, :stars, :breakfast, :description, :price, :photo, :approved)
   end
   
   def address_params

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-  	@hotels = Hotel.take(5)
+  	@hotels = Hotel.where( approved: true ).take(5)
   end
 end

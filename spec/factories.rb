@@ -20,6 +20,7 @@ FactoryGirl.define do
     description 'Some description'
     price 1000.0
     photo 'photo.jpg'
+    approved false
     address
   end
 

@@ -22,7 +22,6 @@ namespace :db do
                    password_confirmation: password)
     end
 
-
     users = User.first(7)
 
     rg = Random.new
@@ -32,7 +31,8 @@ namespace :db do
                         stars: rg.rand(5),
                         breakfast: rg.rand(2) == 1,
                         description: Faker::Lorem.paragraph,
-                        price: rg.rand(200..2000))
+                        price: rg.rand(200..2000),
+                        approved: rg.rand(2) == 1)
 
       hotel.user = users[rg.rand(6)]
       hotel.build_address(country: Faker::Address.country,
