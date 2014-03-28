@@ -2,7 +2,7 @@ HotelAdvisor::Application.routes.draw do
   
   resources :users, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
-  resources :hotels, only: [:index, :new, :create, :show]
+  resources :hotels, only: [:index, :new, :create,  :edit, :update, :destroy, :show]
   resources :rates, only: [:create]
 
   root 'pages#home'

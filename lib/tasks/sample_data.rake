@@ -1,11 +1,16 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    User.create!(name: "Taras Mandzak",
-                 email: "tmandzak@gmail.com",
+    User.create!(name: "Admin",
+                 email: "admin@ha.com",
+                 password: "password",
+                 password_confirmation: "password",
+                 admin: true)
+    
+    User.create!(name: "User",
+                 email: "user@ha.com",
                  password: "password",
                  password_confirmation: "password")
-    
 
     5.times do |n|
       name  = Faker::Name.name
@@ -18,7 +23,7 @@ namespace :db do
     end
 
 
-    users = User.first(6)
+    users = User.first(7)
 
     rg = Random.new
     
@@ -29,7 +34,7 @@ namespace :db do
                         description: Faker::Lorem.paragraph,
                         price: rg.rand(200..2000))
 
-      hotel.user = users[rg.rand(5)]
+      hotel.user = users[rg.rand(6)]
       hotel.build_address(country: Faker::Address.country,
                              city: Faker::Address.city,
                             state: Faker::Address.state_abbr, 
@@ -41,7 +46,7 @@ namespace :db do
       rates_number.times do
         hotel_rate = rg.rand(1..5)
         rate = hotel.rates.build(rate: hotel_rate, comment: Faker::Lorem.sentence)
-        rate.user = users[rg.rand(5)]
+        rate.user = users[rg.rand(6)]
         rate.save
 
         hotel.rates_total += hotel_rate;
@@ -51,7 +56,6 @@ namespace :db do
       hotel.save
 
     end  
-     
 
   end
 end

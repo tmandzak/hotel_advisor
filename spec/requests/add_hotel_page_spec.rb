@@ -1,10 +1,11 @@
 require 'spec_helper'
 
-describe 'Add new hotel page: ' do
+describe 'Edit hotel page: ' do
 
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:admin) { FactoryGirl.create(:admin) }
 
   context 'not signed in user' do
     before { get new_hotel_path }
