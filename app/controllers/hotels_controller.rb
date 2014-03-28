@@ -7,7 +7,7 @@ class HotelsController < ApplicationController
   end
   
   def approval
-    @hotels = Hotel.where( approved: false ).paginate(page: params[:page])
+    @hotels = Hotel.where( approved: false ).order(created_at: :desc).paginate(page: params[:page])
   end
   
   def approve
@@ -61,6 +61,7 @@ class HotelsController < ApplicationController
   def edit
     @hotel = Hotel.find(params[:id])
     @address = @hotel.address
+    session[:return_to] ||= request.referer
   end
   
   def update
@@ -69,7 +70,7 @@ class HotelsController < ApplicationController
     
     if @hotel.update_attributes(hotel_admin_params) && @address.update_attributes(address_params)
       flash[:success] = "Hotel is updated"
-      redirect_to rating_url
+      redirect_to session.delete(:return_to)
     else
       render 'edit'
     end
