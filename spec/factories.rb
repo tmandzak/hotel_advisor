@@ -16,6 +16,8 @@ FactoryGirl.define do
     sequence(:title) { |n| "Hotel-#{n}" }
     stars 5
     rate_avg 4.5
+    rates_count 2
+    rates_total 9
     breakfast true
     description 'Some description'
     price 1000.0
