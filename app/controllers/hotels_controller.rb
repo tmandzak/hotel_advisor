@@ -79,7 +79,7 @@ class HotelsController < ApplicationController
   def destroy
     Hotel.find(params[:id]).destroy
     flash[:danger] = "Hotel is deleted"
-    redirect_to rating_url
+    redirect_to request.referer
   end
 
   private
