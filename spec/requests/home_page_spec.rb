@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-include ActionView::Helpers::TextHelper
+# include ActionView::Helpers::TextHelper
 
 describe 'Home page' do
 
@@ -27,7 +27,7 @@ describe 'Home page' do
       within("a##{hotel.id}") do
         expect(page).to have_css("img[src='#{hotel.photo}']")
         expect(page).to have_selector('h4', text: hotel.title+'*'*hotel.stars)
-        expect(page).to have_selector('h4', text: "Average of #{ pluralize(hotel.rates_count, 'rate') }: #{ '%.1f' % hotel.rate_avg } / 5")
+        expect(page).to have_selector('h4', text: "Average of 2 rates: #{ '%.1f' % hotel.rate_avg } / 5")
       end
 
     end
