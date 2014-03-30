@@ -61,7 +61,7 @@ class HotelsController < ApplicationController
   def edit
     @hotel = Hotel.find(params[:id])
     @address = @hotel.address
-    session[:return_to] ||= request.referer
+    session[:return_to] ||= request.referer unless request.referer.nil?
   end
   
   def update
@@ -70,7 +70,11 @@ class HotelsController < ApplicationController
     
     if @hotel.update_attributes(hotel_admin_params) && @address.update_attributes(address_params)
       flash[:success] = "Hotel is updated"
-      redirect_to session.delete(:return_to)
+      if session[:return_to].nil?
+        redirect_to root_url
+      else
+        redirect_to session.delete(:return_to) unless session[:return_to].nil?
+      end
     else
       render 'edit'
     end

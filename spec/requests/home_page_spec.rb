@@ -6,7 +6,7 @@ describe 'Home page' do
 
   subject { page }
 
-  let(:hotel_not_approved) { FactoryGirl.create(:hotel, approved: false, rate_avg: 5)}
+  let(:hotel_not_approved) { FactoryGirl.create(:hotel_not_approved, rate_avg: 5)}
   let(:hotel_out_of_top5) { FactoryGirl.create(:hotel, rate_avg: 1)}
 
   before do

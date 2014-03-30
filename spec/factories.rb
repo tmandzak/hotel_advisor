@@ -24,6 +24,11 @@ FactoryGirl.define do
     photo 'photo.jpg'
     approved true
     address
+    
+    factory :hotel_not_approved do
+      approved false
+    end
+    
   end
 
   factory :address do

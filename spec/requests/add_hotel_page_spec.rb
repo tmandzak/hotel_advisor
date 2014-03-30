@@ -6,6 +6,11 @@ describe 'Edit hotel page: ' do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:admin) { FactoryGirl.create(:admin) }
+  
+  after(:all) do
+    Hotel.delete_all
+    User.delete_all
+  end
 
   context 'not signed in user' do
     before { get new_hotel_path }
@@ -40,9 +45,7 @@ describe 'Edit hotel page: ' do
       context 'with invalid data' do
 
         describe 'error message' do
-          before do
-            click_button 'Save'
-          end
+          before { click_button 'Save' }
 
           it { should have_selector('div.alert.alert-danger') }
         end
